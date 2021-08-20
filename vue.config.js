@@ -1,4 +1,5 @@
 module.exports = {
+  lintOnSave: false, //是否开启eslint
   configureWebpack: {
     resolve: {
       alias: {
@@ -8,7 +9,7 @@ module.exports = {
         'assets': '@/assets',
         'network': '@/network',
         'views': '@/views',
-      }
-    }
+      },
+    },
   }
 }
