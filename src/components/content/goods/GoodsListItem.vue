@@ -1,9 +1,9 @@
 <template>
-  <div class="goods-item">
-    <img :src="goodsItem.show.img" alt="">
-    <div class="goods-info">
+  <div class="goods-item" @click="itemClick">
+    <img :src="getImg" alt="" @load="imageLoad">
+    <div class="goods-info" >
       <p>{{goodsItem.title}}</p>
-      <span class="price">{{goodsItem.price}}</span>
+      <span class="price">￥{{goodsItem.price}}</span>
       <span class="collect">{{goodsItem.cfav}}</span>
     </div>
   </div>
@@ -20,6 +20,30 @@
         }
       }
     },
+    methods: {
+
+      //监听到图片加载完成之后的处理
+      imageLoad(){
+        //利用路由来发射事件，让每个事件各自管理
+        // if(this.$route.path.indexOf('/home')){
+        //   this.$bus.$emit('homeItemImageLoad') //发射到事件总线
+        // }else if(this.$route.path.indexOf('/detail')){
+        //   this.$bus.$emit('detailItemImageLoad') //发射到事件总线
+        // }
+        this.$bus.$emit('itemImageLoad') //发射到事件总线
+        
+      },
+      itemClick(){
+        // console.log('转到详情页');
+        this.$router.push('/Detail/'+this.goodsItem.iid)
+      }
+    },
+    computed:{
+      getImg(){
+        return this.goodsItem.img||this.goodsItem.image||this.goodsItem.show.img
+      }
+    }
+    
   }
 </script>
 
