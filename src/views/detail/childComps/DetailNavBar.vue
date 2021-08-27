@@ -34,7 +34,8 @@ export default{
     methods: {
       titleClick(index){
         console.log('---点击--');
-        this.currentIndex = index
+        this.currentIndex = index;
+        this.$emit('titleClick',index);
       },
       backClick(){
         this.$router.back();

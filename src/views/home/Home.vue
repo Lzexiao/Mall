@@ -34,7 +34,7 @@ import BackTop from 'components/content/backTop/BackTop'
 import HomeSwiper from './childComps/HomeSwiper'
 import RecommendView from './childComps/RecommendView'
 import FeatureView from './childComps/FeatureView'
-import {itemListenerMixin} from '@/common/mixin.js'
+import {itemListenerMixin,backTopMixin} from '@/common/mixin.js'
 
 
 import {
@@ -52,7 +52,7 @@ import {
       TabControl,
       GoodsList,
       Scroll,
-      BackTop,
+      BackTop
     },
     data() {
       return {
@@ -65,29 +65,28 @@ import {
           'sell':{page:0,list:[],},
         },
         currentType:'pop',
-        isShowBackTop:false,
         tabOffsetTop:0,
         isTabFixed:false,
         saveY:0,
         
       }
     },
-    mixins:[itemListenerMixin],
+    mixins:[itemListenerMixin,backTopMixin],
     computed:{
       showGoods(){
         return this.goods[this.currentType].list
       }
     },
     destroyed() {
-      console.log('destroyed')
+      // console.log('destroyed')
     },
     activated() {
-      console.log('进来');
+      // console.log('进来');
       this.$refs.scroll.scrollTo(0,this.saveY,1)
       this.$refs.scroll.refresh()
     },
     deactivated() {
-      console.log('离开');
+      // console.log('离开');
       //1.保存Y值
       this.saveY = this.$refs.scroll.getScrollY();4
       //2.取消全局事件的监听
@@ -132,7 +131,6 @@ import {
       },
       //上拉加载更多
       loadMore(){
-        console.log('上拉加载更多');
         this.getHomeGoods(this.currentType);
         this.$refs.scroll.scroll.refresh();
       },
@@ -145,11 +143,6 @@ import {
 
         //2.决定tabControl是否吸顶(position:fixed)
         this.isTabFixed = (-position.y) > this.tabOffsetTop
-      },
-      //回到顶部
-      backClick(){
-        // this.$refs.scroll.scroll.scrollTo(0,0,500);//拿到scroll组件的srcoll对象调用bscroll的scrollTo方法
-        this.$refs.scroll.scrollTo(0,0,500)
       },
       /**
        * 时间监听相关方法

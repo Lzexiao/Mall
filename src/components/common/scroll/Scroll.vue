@@ -45,7 +45,6 @@ export default {
     if(this.pullUpLoad){
       //监听上拉事件
       this.scroll.on('pullingUp',() =>{
-        console.log('上啦加载更多');
         this.$emit('pullingUp')
       })
     }
@@ -66,7 +65,6 @@ export default {
     },
     //每一张图片加载完成后都进行refresh
     refresh(){
-      console.log('-----');
       this.scroll&&this.scroll.refresh();
     },
     //返回离开时的位置
