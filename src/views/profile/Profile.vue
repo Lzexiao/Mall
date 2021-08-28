@@ -1,6 +1,6 @@
 <template>
   <div id="profile">
-    <nav-bar class="nav-bar"><div slot="center">小码哥商城</div></nav-bar>
+    <nav-bar class="nav-bar"><div slot="center">我的蘑菇街</div></nav-bar>
     <!--1.单独封装一个组件: 利用slot知识点-->
     <user-info></user-info>
 
