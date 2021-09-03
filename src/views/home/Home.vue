@@ -42,7 +42,7 @@ import HomeSwiper from "./childComps/HomeSwiper";
 import RecommendView from "./childComps/RecommendView";
 import FeatureView from "./childComps/FeatureView";
 import { itemListenerMixin, backTopMixin } from "@/common/mixin.js";
-
+import {debounce} from "@/common/utils"
 import { getHomeMultidata, getHomeGoods } from "network/home.js";
 
 export default {
